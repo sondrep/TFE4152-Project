@@ -1,26 +1,24 @@
 .include p18_cmos_models_tt.inc
 
-.param W = 1u
-.param L = 1u
-.param Ib = 6.43u
+.param L = 0.36u
+.param IB = 6.43u
 
-Vdd 0 vdd 1
+VDD vdd 0 3.3
 
-Ibias_1 vdd ibias_1 4*Ib
-Ibias_2 vdd ibias_2 Ib
-Ibias_3 vdd ibias_3 Ib
-Ibias_4 vdd ibias_4 4*Ib
-Iin     vdd iin     7*Ib
+IBIAS_1 vdd ibias_1 DC IB*4
+IBIAS_2 vdd ibias_2 DC IB
+IBIAS_3 vdd ibias_3 DC IB
+IBIAS_4 vdd ibias_4 DC IB*4
 
-*DRAIN GATE SOURCE BASE
-mn1     vout        ibias_1     Q1_S    0   NMOS    l = L   w = W
-mn2     Q1_S        iin         0       0   NMOS    l = L   w = W
-mn3     ibias_1     ibias_2     0       0   NMOS    l = L   w = W
-mn4     ibias_2     ibias_2     Q1_S    0   NMOS    l = L   w = W
+IIN vdd iin DC IB*7
 
-mn5     iin         ibias_4     Q5_S    0   NMOS    l = L   w = W
-mn6     Q5_S        iin         0       0   NMOS    l = L   w = W
-mn7     ibias_4     ibias_3     0       0   NMOS    l = L   w = W
-mn8     ibias_3     ibias_3     Q5_S    0   NMOS    l = L   w = W
+* DRAIN GATE SOURCE BULK
+mn1 vout    ibias_1 n1 0 NMOS l=L w=L*70 m=1
+mn2 n1      iin     0  0 NMOS l=L w=L*80 m=1
+mn3 ibias_1 ibias_2 0  0 NMOS l=L w=L*10 m=1
+mn4 ibias_2 ibias_2 n1 0 NMOS l=L w=L*10 m=1
 
-Vout vout 0 0
+mn5 iin     ibias_4 n5 0 NMOS l=L w=L*70 m=1
+mn6 n5      iin     0  0 NMOS l=L w=L*80 m=1
+mn7 ibias_4 ibias_3 0  0 NMOS l=L w=L*10 m=1
+mn8 ibias_3 ibias_3 n5 0 NMOS l=L w=L*10 m=1
