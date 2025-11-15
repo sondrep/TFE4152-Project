@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps
+
 module tsetlin_comb (
     input wire A,
     input wire B,
@@ -28,17 +30,21 @@ assign nand_out_1 = ~(A & ~C);
 assign nand_out_2 = ~(~A & B & C & ~x);
 assign nand_out_3 = ~(A & B & C & x);
 
-assign nand_out_4 = ~(~A & B & ~x);
+assign nand_out_4 = ~(~A & C & ~x);
 assign nand_out_5 = ~(A & B & C);
 assign nand_out_6 = ~(A & ~C & ~x);
 
 assign nand_out_7 = ~(~A & ~B & ~x);
-assign nand_out_8 = ~(A & ~B & ~C & x);
+assign nand_out_8 = ~(~A & B & C & ~x);
 assign nand_out_9 = ~(~A & B & C & x);
 assign nand_out_10 = ~(A & B & ~x);
 
 assign nand_out_11 = ~(nand_out_1 & nand_out_2 & nand_out_3);
 assign nand_out_12 = ~(nand_out_4 & nand_out_5 & nand_out_6);
 assign nand_out_13 = ~(nand_out_7 & nand_out_8 & nand_out_9 & nand_out_10);
+
+assign DA = nand_out_11;
+assign DB = nand_out_12;
+assign DC = nand_out_13;
 
 endmodule
