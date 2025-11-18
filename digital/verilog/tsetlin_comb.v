@@ -4,6 +4,9 @@ module tsetlin_comb (
     input wire A,
     input wire B,
     input wire C,
+    input wire nA,
+    input wire nB,
+    input wire nC,
     input wire x,
     output wire DA,
     output wire DB,
@@ -26,17 +29,17 @@ wire nand_out_11;
 wire nand_out_12;
 wire nand_out_13;
 
-assign nand_out_1 = ~(A & ~C);
-assign nand_out_2 = ~(~A & B & C & ~x);
+assign nand_out_1 = ~(A & nC);
+assign nand_out_2 = ~(nA & B & C & ~x);
 assign nand_out_3 = ~(A & B & C & x);
 
-assign nand_out_4 = ~(~A & C & ~x);
+assign nand_out_4 = ~(nA & C & ~x);
 assign nand_out_5 = ~(A & B & C);
-assign nand_out_6 = ~(A & ~C & ~x);
+assign nand_out_6 = ~(A & nC & ~x);
 
-assign nand_out_7 = ~(~A & ~B & ~x);
-assign nand_out_8 = ~(~A & B & C & ~x);
-assign nand_out_9 = ~(~A & B & C & x);
+assign nand_out_7 = ~(nA & nB & ~x);
+assign nand_out_8 = ~(nA & B & C & ~x);
+assign nand_out_9 = ~(nA & B & C & x);
 assign nand_out_10 = ~(A & B & ~x);
 
 assign nand_out_11 = ~(nand_out_1 & nand_out_2 & nand_out_3);

@@ -3,17 +3,23 @@
 module tsetlin_fsm_tb; 
 reg x;
 reg clk = 0;
+reg rst;
 wire alpha;
 
 tsetlin_fsm dut (
     .clk(clk),
     .x(x),
-    .alpha(alpha)
+    .alpha(alpha),
+    .rst(rst)
 );
 
 always #10 clk = ~clk;
 
 initial begin
+    rst = 1;
+    #10;
+    rst = 0;
+    #10
     x = 1;
     #20;
     x = 0;
