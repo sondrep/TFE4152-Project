@@ -29,7 +29,7 @@ tsetlin_comb tsetlin_comb1(
     .C(C),
     .nA(nA),
     .nB(nB),
-    .nC(nC)
+    .nC(nC),
     // Connect output of comb part to input of Dff's
     .DA(DA),
     .DB(DB),
